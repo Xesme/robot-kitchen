@@ -13,5 +13,18 @@ Food.prototype.searchIngredient = function(foodName) {
   });
 };
 
+Food.prototype.searchRecipe = function(ingredient, diet1, diet2) {
+  var type1 = 'healthLabels=';
+  var type2 = 'healthLabels=';
+  if(diet1 === 'low-fat' || diet1 === 'low-sodium') {
+    var type1 = 'diet=';
+  if(diet2 === 'low-fat' || diet2 === 'low-sodium') {
+    var type2 = 'diet';
+  $.get('https://api.edamam.com/search?q=' + ingredient + '&app_id=' + recipeId + '&app_key=' + recipeApiKey + '&' + type + diet1 '&' + type2 + diet2).then(function(response) {
+    console.log(response);
+    // $('.recipe-results').append('<ul>')
+  });
+}
+
 
 exports.foodModule = Food;
