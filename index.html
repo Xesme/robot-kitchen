@@ -11,12 +11,13 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
-          <form class="form-group recipe-form">
+          <form class="form-group" id="recipe-form">
             <h2>Please enter an ingredient to be searched, and or dietary constraints</h2>
             <input class="form-control" type="text" id="ingredient" required>
             <!-- option 1 -->
-            <label>if applicable:</label>
-            <select class="form-control diet">
+            <h3>if applicable<h3>
+            <label>option one:</label>
+            <select class="form-control" id="diet1">
               <option></option>
               <optgroup label="Allergies">
                 <option value="shellfish-free">Shellfish</option>
@@ -38,7 +39,7 @@
             </select>
             <!-- option 2 -->
             <label>option two:</label>
-            <select class="form-control diet">
+            <select class="form-control" id="diet2">
               <option></option>
               <optgroup label="Allergies">
                 <option value="shellfish-free">Shellfish</option>
@@ -67,8 +68,8 @@
         <div class="col-lg-4">
           <div class="form-group search">
             <form id="input-form">
-              <h2>Search the calorie content of your food</h2>
-              <label for="food">Please enter a food:</label>
+              <h2>Search the calorie content of an ingredient</h2>
+              <label for="food">Please enter an ingredient:</label>
               <input class="form-control" type="text" id="food">
               <br>
               <button  type="submit" class="btn btn-success">Search</button>

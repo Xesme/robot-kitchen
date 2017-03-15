@@ -1,6 +1,6 @@
 # _Robot Kitchen Project_
 
-#### _This web page allows a user to look up nutrition information and possibly recipes, 15 March 2017_
+#### _This web page allows a user to look up nutrition information and recipes, 15 March 2017_
 
 #### By _**Erica Wright & Xia Amendolara**_
 
@@ -10,7 +10,8 @@ _This web page allows a user to browse nutritional information of many recipes f
 
 ## Setup/Installation Requirements
 
-* Set up your unique time API key by visiting https://www.nutritionix.com/business/api and signing up for a free account. Create a `.env` file in the top level project directory and enter in your API key as: `exports.apiKey = 'yourKeyHere';`.
+* Set up your unique nutrition API key and get your id by visiting https://www.nutritionix.com/business/api and signing up for a free account. Create a `.env` file in the top level project directory and enter in your API key as: `exports.nutritionApiKey = 'yourNutritionKeyHere';` and your ID as `exports.nutritionId = 'yourNutritionID'`.
+* Set up your unique recipe API key and get your id by visiting https://developer.edamam.com/ and signing up for a free account using the **Recipe Search API** (**not** Nutrition Analysis). Inside your `.env` file enter in your API key as: `exports.recipeApiKey = 'yourRecipeKeyHere';` and your ID as `exports.recipeId = 'yourRecipeID'`.
 * Run `npm install` and `bower install` to install all dependencies as listed in the package.json and bower.json files for project.
 * Run command `gulp build` and `gulp serve` to start local server.
 * Open `index.html` in web browser (Chrome recommended).
