@@ -1,11 +1,12 @@
 var Food = require('./../js/kitchen.js').foodModule;
 
 $(document).ready(function(){
+  var newFood = new Food();
 
   $('#input-form').submit(function(event){
     event.preventDefault();
     var foodInput = $('#food').val();
-    var newFood = Food();
+    console.log(foodInput);
     newFood.search(foodInput);
   });
 
