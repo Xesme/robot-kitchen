@@ -3,22 +3,83 @@
   <head>
     <meta charset="utf-8">
     <title>Robot Kitchen</title>
+    <link rel="stylesheet" href="build/css/vendor.css">
     <script type="text/javascript" src="build/js/vendor.min.js"></script>
     <script type="text/javascript" src="build/js/app.js"></script>
   </head>
   <body>
-    <div class="search">
-      <form id="input-form">
-        <h2>Search the calorie content of your food</h2>
-        <label for="food">Please enter a food:</label>
-        <input type="text" id="food">
-        <button type="submit">Search</button>
-      </form>
-    </div>
-    <div class="result-div">
-      <ul id="results">
-
-      </ul>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <form class="form-group recipe-form">
+            <h2>Please enter an ingredient to be searched, and or dietary constraints</h2>
+            <input class="form-control" type="text" id="ingredient" required>
+            <!-- option 1 -->
+            <label>if applicable:</label>
+            <select class="form-control diet">
+              <option></option>
+              <optgroup label="Allergies">
+                <option value="shellfish-free">Shellfish</option>
+                <option value="peanut-free">Peanuts</option>
+                <option value="dairy-free">Dairy</option>
+                <option value="gluten-free">Gluten</option>
+                <option value="egg-free">Eggs</option>
+                <option value="soy-free">Soy</option>
+              </optgroup>
+              <optgroup label="Dietary">
+                <option value="vegetarian">Vegetarian</option>
+                <option value="vegan">Vegan</option>
+                <option value="paleo">Paleo</option>
+                <option value="low-sugar">No Sugar</option>
+                <option value="kosher">Kosher</option>
+                <option value="low-sodium">Low Sodium</option>
+                <option value="low-fat">Low Fat</option>
+              </optgroup>
+            </select>
+            <!-- option 2 -->
+            <label>option two:</label>
+            <select class="form-control diet">
+              <option></option>
+              <optgroup label="Allergies">
+                <option value="shellfish-free">Shellfish</option>
+                <option value="peanut-free">Peanuts</option>
+                <option value="dairy-free">Dairy</option>
+                <option value="gluten-free">Gluten</option>
+                <option value="egg-free">Eggs</option>
+                <option value="soy-free">Soy</option>
+              </optgroup>
+              <optgroup label="Dietary">
+                <option value="vegetarian">Vegetarian</option>
+                <option value="vegan">Vegan</option>
+                <option value="paleo">Paleo</option>
+                <option value="low-sugar">No Sugar</option>
+                <option value="kosher">Kosher</option>
+                <option value="low-sodium">Low Sodium</option>
+                <option value="low-fat">Low Fat</option>
+              </optgroup>
+            </select>
+            <br>
+            <button type="submit" class="btn btn-info">search</button>
+          </form>
+        </div>
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group search">
+            <form id="input-form">
+              <h2>Search the calorie content of your food</h2>
+              <label for="food">Please enter a food:</label>
+              <input class="form-control" type="text" id="food">
+              <br>
+              <button  type="submit" class="btn btn-success">Search</button>
+            </form>
+          </div>
+          <div class="result-div">
+            <ul id="results">
+              <!-- this is the results area -->
+            </ul>
+          </div>
+      </div>
     </div>
   </body>
 </html>
