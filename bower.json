@@ -1,0 +1,18 @@
+{
+  "name": "robot-kitchen",
+  "description": "#### _This web page allows a user to look up nutrition information and possibly recipes, 15 March 2017_",
+  "main": "index.js",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7"
+  }
+}
