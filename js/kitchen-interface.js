@@ -7,7 +7,7 @@ $(document).ready(function(){
     event.preventDefault();
     var foodInput = $('#food').val();
     console.log(foodInput);
-    newFood.search(foodInput);
+    newFood.searchIngredient(foodInput);
   });
 
 

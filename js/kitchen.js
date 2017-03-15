@@ -1,17 +1,15 @@
-var apiKey = require('./../.env').apiKey;
-var id = require('./../.env').id;
+var nutritionApiKey = require('./../.env').nutritionApiKey;
+var nutritionId = require('./../.env').nutritionId;
+var recipeApiKey = require('./../.env').recipeApiKey;
+var recipeId = require('./../.env').recipeId;
 
 function Food() {
 }
 
-Food.prototype.search = function(foodName) {
-  if (foodName.indexOf(" ") >= 0) {
-    foodName = foodName.replace("\b \b ", "%20");
-    console.log(foodName);
-  }
-  $.get('https://api.nutritionix.com/v1_1/search/' + foodName + '?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=' + id + '&appKey=' + apiKey).then(function(response) {
+Food.prototype.searchIngredient = function(foodName) {
+  $.get('https://api.nutritionix.com/v1_1/search/' + foodName + '?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=' + nutritionId + '&appKey=' + nutritionApiKey).then(function(response) {
     console.log(response);
-  $('#results').append('<li>' + foodName + ": " + "has this many calories: " +  response.hits.fields.nf_calories + '<br>' + " and this many grams of fat: " + response.hits.fields.nf_total_fat + "</li>");
+  $('#results').append('<li>' + response.hits[0].fields.item_name + ": " + "has this many calories: " +  Math.round(response.hits[0].fields.nf_calories) + '<br>' + " and this many grams of fat: " + Math.round(response.hits[0].fields.nf_total_fat) + "</li>");
   });
 };
 
