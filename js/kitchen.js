@@ -14,17 +14,28 @@ Food.prototype.searchIngredient = function(foodName) {
 };
 
 Food.prototype.searchRecipe = function(ingredient, diet1, diet2) {
-  var type1 = 'healthLabels=';
-  var type2 = 'healthLabels=';
-  if(diet1 === 'low-fat' || diet1 === 'low-sodium') {
-    var type1 = 'diet=';
-  if(diet2 === 'low-fat' || diet2 === 'low-sodium') {
-    var type2 = 'diet';
-  $.get('https://api.edamam.com/search?q=' + ingredient + '&app_id=' + recipeId + '&app_key=' + recipeApiKey + '&' + type + diet1 '&' + type2 + diet2).then(function(response) {
+  $.get('https://api.edamam.com/search?q=' + ingredient + '&app_id=' + recipeId + '&app_key=' + recipeApiKey).then(function(response) {
+    for ( var x = 0; x < 10; x++) {
+      var healthLabels = response.hits[x].recipe.healthLabels;
+      for (var i = 0; i < healthLabels.length; i++) {
+        if (healthLabels[i].toLowerCase() === diet1 || healthLabels[i].toLowerCase() === diet2) {
+          console.log(response.hits[x].recipe.label);
+        } else {
+          console.log('no health label match');
+        }
+        var dietLabels = response.hits[x].recipe.dietLabels;
+        for (var j = 0; j < dietLabels.length; j++) {
+          if (dietLabels[j].toLowerCase() === diet1 || dietLabels[j].toLowerCase() === diet2) {
+            console.log(response.hits[x].recipe.label);
+          } else {
+            console.log('no diet label match');
+          }
+        }
+      }
+    }
     console.log(response);
     // $('.recipe-results').append('<ul>')
   });
-}
-
+};
 
 exports.foodModule = Food;
