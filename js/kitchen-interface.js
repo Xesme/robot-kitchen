@@ -5,7 +5,7 @@ var ingredientDisplay = function(foodName, foodCalories, foodFat) {
 };
 
 var recipeDisplay = function(link, recipeName, image, ingredients) {
-  $('.recipe-results').append("<div class='recipes'><a href='" + link + "'>" + recipeName + "</a><br><br><img src='" + image + "'><hr><ul>" + ingredients + "</ul><br></div>");
+  $('.recipe-results').append("<div class='recipes'><a href='" + link + "'>" + recipeName + "</a><br><br><a href='" + link + "'><img src='" + image + "'></a><hr><ul>" + ingredients + "</ul><br></div><hr>");
 };
 
 $(document).ready(function(){

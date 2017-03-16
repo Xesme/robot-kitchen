@@ -1,4 +1,7 @@
 $green: #497f67;
+$light-green: #a7d8c2;
+$orange: #F39832;
+$light-orange: #FDAE55;
 
 body {
   background: url("/img/background2.jpg");
@@ -26,20 +29,50 @@ body {
   font-family: 'Bungee Hairline', cursive;
   padding: 5%;
   width: 75%;
+  color: #000;
+  #recipe-search-button, #ingredient-search-button {
+    background-color: $green;
+    color: white;
+  }
+  #recipe-search-button:hover, #ingredient-search-button:hover {
+    background-color: $light-green;
+    color: white;
+  }
   .fixed {
     height: auto;
     position: fixed;
     width: 15%;
   }
+  #clear-button {
+    background-color: $orange;
+    color: white;
+  }
+  #clear-button:hover {
+    background-color: $light-orange;
+  }
 .recipe-results, #results {
     font-family: 'Raleway', sans-serif;
     text-align: center;
+    a {
+      color: $green;
+    }
+    a:hover {
+      color: $orange;
+    }
     li {
       list-style-type: none;
     }
     img {
       border-radius: 90%;
       border: solid 5px $green;
+    }
+    img:hover {
+      border-radius: 90%;
+      border: solid 5px $orange;
+    }
+    hr {
+      // color: $light-green;
+      border-color: $light-green;
     }
   }
 }
