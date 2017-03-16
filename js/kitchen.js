@@ -15,26 +15,34 @@ Food.prototype.searchIngredient = function(foodName) {
 
 Food.prototype.searchRecipe = function(ingredient, diet1, diet2) {
   $.get('https://api.edamam.com/search?q=' + ingredient + '&app_id=' + recipeId + '&app_key=' + recipeApiKey).then(function(response) {
+    var results = [];
     for ( var x = 0; x < 10; x++) {
-      var healthLabels = response.hits[x].recipe.healthLabels;
-      for (var i = 0; i < healthLabels.length; i++) {
-        if (healthLabels[i].toLowerCase() === diet1 || healthLabels[i].toLowerCase() === diet2) {
-          console.log(response.hits[x].recipe.label);
-        } else {
-          console.log('no health label match');
+      var labels = [];
+      var healthLabel = response.hits[x].recipe.healthLabels;
+      var dietLabel = response.hits[x].recipe.dietLabels;
+      var resultName = response.hits[x].recipe.label;
+      for (var i = 0; i < healthLabel.length; i++) {
+        labels.push(healthLabel[i].toLowerCase());
+      }
+      for (var j = 0; j < dietLabel.length; j++) {
+        labels.push(dietLabel[j].toLowerCase());
+      }
+
+      if ((diet1) && (diet2)) {
+        if (labels.indexOf(diet1) >= 0 && labels.indexOf(diet2) >= 0) {
+          results.push(resultName);
         }
-        var dietLabels = response.hits[x].recipe.dietLabels;
-        for (var j = 0; j < dietLabels.length; j++) {
-          if (dietLabels[j].toLowerCase() === diet1 || dietLabels[j].toLowerCase() === diet2) {
-            console.log(response.hits[x].recipe.label);
-          } else {
-            console.log('no diet label match');
-          }
+      } else if ((diet1)|| (diet2)) {
+        if (labels.indexOf(diet1) >= 0 || labels.indexOf(diet2) >= 0) {
+          results.push(resultName);
         }
+      } else {
+        results.push(resultName);
       }
     }
+
     console.log(response);
-    // $('.recipe-results').append('<ul>')
+    console.log(results);
   });
 };
 
