@@ -14,6 +14,7 @@ $(document).ready(function(){
 
 $("#recipe-form").submit(function(event){
   event.preventDefault();
+  $('.recipe-results').empty();
   var ingredient = $("#ingredient").val();
   var diet1 = $("#diet1").val();
   var diet2 = $("#diet2").val();
@@ -26,5 +27,10 @@ $("#recipe-form").submit(function(event){
     event.preventDefault();
     var foodInput = $('#food').val();
     newFood.searchIngredient(foodInput, ingredientDisplay);
+    $('#food').val("");
+  });
+
+  $('#clear-button').click(function() {
+    $('#results').empty();
   });
 });
