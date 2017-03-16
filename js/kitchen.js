@@ -6,14 +6,13 @@ var recipeId = require('./../.env').recipeId;
 function Food() {
 }
 
-Food.prototype.searchIngredient = function(foodName) {
+Food.prototype.searchIngredient = function(foodName, ingredientDisplay) {
   $.get('https://api.nutritionix.com/v1_1/search/' + foodName + '?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=' + nutritionId + '&appKey=' + nutritionApiKey).then(function(response) {
-    console.log(response);
-  $('#results').append('<li>' + response.hits[0].fields.item_name + ": " + "has this many calories: " +  Math.round(response.hits[0].fields.nf_calories) + '<br>' + " and this many grams of fat: " + Math.round(response.hits[0].fields.nf_total_fat) + "</li>");
+    ingredientDisplay(response.hits[0].fields.item_name, response.hits[0].fields.nf_calories, response.hits[0].fields.nf_total_fat);
   });
 };
 
-Food.prototype.searchRecipe = function(ingredient, diet1, diet2) {
+Food.prototype.searchRecipe = function(ingredient, diet1, diet2, recipeDisplay) {
   $.get('https://api.edamam.com/search?q=' + ingredient + '&app_id=' + recipeId + '&app_key=' + recipeApiKey).then(function(response) {
     var results = [];
     for ( var x = 0; x < 10; x++) {
@@ -46,10 +45,11 @@ Food.prototype.searchRecipe = function(ingredient, diet1, diet2) {
       for (var t = 0; t < results[y].ingredientLines.length; t++) {
         ingredients += "<li>" + results[y].ingredientLines[t] + "</li>";
       }
-      $('.recipe-results').append("<div class='recipes'><a href='" + results[y].shareAs + "'>" + results[y].label + "</a><br><br><img src='" + results[y].image + "'><hr><ul>" + ingredients + "</ul><br></div>");
+      var link = results[y].shareAs;
+      var recipeName = results[y].label;
+      var image = results[y].image;
+      recipeDisplay(link, recipeName, image, ingredients);
     }
-    console.log(response);
-    console.log(results);
   });
 };
 
