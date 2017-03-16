@@ -8,7 +8,12 @@ function Food() {
 
 Food.prototype.searchIngredient = function(foodName, ingredientDisplay) {
   $.get('https://api.nutritionix.com/v1_1/search/' + foodName + '?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=' + nutritionId + '&appKey=' + nutritionApiKey).then(function(response) {
-    ingredientDisplay(response.hits[0].fields.item_name, response.hits[0].fields.nf_calories, response.hits[0].fields.nf_total_fat);
+    for (var x = 0; x < 3; x++) {
+      var name = response.hits[x].fields.item_name;
+      var calories = response.hits[x].fields.nf_calories;
+      var fat = response.hits[x].fields.nf_total_fat;
+      ingredientDisplay(name, calories, fat);
+    }
   });
 };
 

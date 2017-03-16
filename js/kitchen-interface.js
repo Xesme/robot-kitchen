@@ -1,7 +1,7 @@
 var Food = require('./../js/kitchen.js').foodModule;
 
 var ingredientDisplay = function(foodName, foodCalories, foodFat) {
-  $('#results').append('<li>' + foodName + ": " + "has this many calories: " +  Math.round(foodCalories) + '<br>' + " and this many grams of fat: " + Math.round(foodFat) + "</li>");
+  $('#results').append('<li>' + foodName + ": " + "has this many calories: " +  Math.round(foodCalories) + '<br>' + " and this many grams of fat: " + Math.round(foodFat) + "</li><hr>");
 };
 
 var recipeDisplay = function(link, recipeName, image, ingredients) {
@@ -28,6 +28,7 @@ $("#recipe-form").submit(function(event){
     var foodInput = $('#food').val();
     newFood.searchIngredient(foodInput, ingredientDisplay);
     $('#food').val("");
+    $('#results').empty();
   });
 
   $('#clear-button').click(function() {
