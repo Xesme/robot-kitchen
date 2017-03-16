@@ -20,7 +20,7 @@ Food.prototype.searchRecipe = function(ingredient, diet1, diet2) {
       var labels = [];
       var healthLabel = response.hits[x].recipe.healthLabels;
       var dietLabel = response.hits[x].recipe.dietLabels;
-      var resultName = response.hits[x].recipe.label;
+      var resultRecipe = response.hits[x].recipe;
       for (var i = 0; i < healthLabel.length; i++) {
         labels.push(healthLabel[i].toLowerCase());
       }
@@ -30,17 +30,24 @@ Food.prototype.searchRecipe = function(ingredient, diet1, diet2) {
 
       if ((diet1) && (diet2)) {
         if (labels.indexOf(diet1) >= 0 && labels.indexOf(diet2) >= 0) {
-          results.push(resultName);
+          results.push(resultRecipe);
         }
       } else if ((diet1)|| (diet2)) {
         if (labels.indexOf(diet1) >= 0 || labels.indexOf(diet2) >= 0) {
-          results.push(resultName);
+          results.push(resultRecipe);
         }
       } else {
-        results.push(resultName);
+        results.push(resultRecipe);
       }
     }
 
+    for (var y = 0; y < results.length; y++) {
+      var ingredients = '';
+      for (var t = 0; t < results[y].ingredientLines.length; t++) {
+        ingredients += "<li>" + results[y].ingredientLines[t] + "</li>";
+      }
+      $('.recipe-results').append("<div class='recipes'><a href='" + results[y].shareAs + "'>" + results[y].label + "</a><br><br><img src='" + results[y].image + "'><hr><ul>" + ingredients + "</ul><br></div>");
+    }
     console.log(response);
     console.log(results);
   });
