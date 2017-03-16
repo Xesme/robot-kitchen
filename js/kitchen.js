@@ -13,9 +13,9 @@ Food.prototype.searchIngredient = function(foodName, ingredientDisplay) {
 };
 
 Food.prototype.searchRecipe = function(ingredient, diet1, diet2, recipeDisplay) {
-  $.get('https://api.edamam.com/search?q=' + ingredient + '&app_id=' + recipeId + '&app_key=' + recipeApiKey).then(function(response) {
+  $.get('https://api.edamam.com/search?q=' + ingredient + '&app_id=' + recipeId + '&app_key=' + recipeApiKey + '&from=0&to=30').then(function(response) {
     var results = [];
-    for ( var x = 0; x < 10; x++) {
+    for ( var x = 0; x < 30; x++) {
       var labels = [];
       var healthLabel = response.hits[x].recipe.healthLabels;
       var dietLabel = response.hits[x].recipe.dietLabels;
